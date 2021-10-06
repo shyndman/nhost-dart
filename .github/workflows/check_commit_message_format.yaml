@@ -1,0 +1,20 @@
+# Please see CONTRIBUTING.md and Conventional Commits (https://www.conventionalcommits.org/en/v1.0.0-beta.2/)
+# on our commit message formation.
+
+name: Lint commit message format
+on:
+  pull_request:
+    branches:
+    - main
+    - main-null-unsafe
+
+jobs:
+  lint-commits:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          # fetch-depth is required so the linter can read all the commits in
+          # the PR
+          fetch-depth: 0
+      - uses: wagoid/commitlint-github-action@v4
